@@ -2,13 +2,13 @@
 /**
  * Write a description of class Die here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Jack Duncan
+ * @version 2021-2-4
  */
 public class Die
 {
     // instance variables - replace the example below with your own
-    private int x;
+    private int number;
 
     /**
      * Constructor for objects of class Die
@@ -16,18 +16,28 @@ public class Die
     public Die()
     {
         // initialise instance variables
-        x = 0;
+        number = (int) (Math.random() * 6 + 1);
     }
 
     /**
      * An example of a method - replace this comment with your own
      *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
+     * @return    roll number
      */
-    public int sampleMethod(int y)
+    public int getNumber()
     {
         // put your code here
-        return x + y;
+        return number;
+    }
+    
+    /**
+     * An example of a method - replace this comment with your own
+     *
+     * @param    changes number
+     */
+    public void roll()
+    {
+        // put your code here
+        number = (int) (Math.random() * 6 + 1);
     }
 }

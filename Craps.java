@@ -32,6 +32,49 @@ public class Craps
         }
         System.out.println();
         System.out.println("Good Luck!");
-
+        boolean done = false;
+        boolean donePoint = false;
+        Die d1 = new Die();
+        Die d2 = new Die();
+        int firstRoll = d1.getNumber() + d2.getNumber();
+        while (!done)
+        {
+            System.out.println("First roll ...");
+            System.out.println("Your rolled a " + (firstRoll) + "!");
+            if (firstRoll == 7 || firstRoll == 11)
+            {
+                System.out.println("You win!");
+            }
+            else if (firstRoll == 2 || firstRoll == 3 || firstRoll == 12)
+            {
+                System.out.println("You lose!");
+            }
+            else
+            {
+                System.out.println(firstRoll + " is your point!");
+                while (!donePoint)
+                {
+                    System.out.println("Rolling ...");
+                    d1.roll();
+                    d2.roll();
+                    System.out.println("Your rolled a " + (d1.getNumber() + d2.getNumber()) + "!");
+                    if (d1.getNumber() + d2.getNumber() == firstRoll)
+                    {
+                        System.out.println("You win!");
+                    }
+                    else if (d1.getNumber() + d2.getNumber() == 7)
+                    {
+                        System.out.println("You lose!");
+                    }
+                }
+            }
+            System.out.print("Press Q to quit, anything else to play again: ");
+            String ans = in.nextLine();
+            if (ans.equalsIgnoreCase("q"))
+            {
+                System.out.print("Goodbye!");
+                done = true;
+            }
+        }
     }
 }
