@@ -3,7 +3,7 @@
  * Craps Simulator
  *
  * @author Jack Duncan
- * @version 2021-2-2
+ * @version 2021-2-4
  */
 
 import java.util.Scanner;
@@ -22,23 +22,40 @@ public class Craps
 
     public static void main(String[] args)
     {
-        Scanner in = new Scanner(System.in);
-        System.out.println("LET'S PLAY CRAPS!");
-        System.out.println("Do you need instructions (Y/N)?");
-        String response = in.nextLine();
-        if (response.equalsIgnoreCase("y"))
-        {
-            rules();
-        }
-        System.out.println();
-        System.out.println("Good Luck!");
+        // intializing variables/objects
         boolean done = false;
         boolean donePoint = false;
         Die d1 = new Die();
         Die d2 = new Die();
-        int firstRoll = d1.getNumber() + d2.getNumber();
+        
+        Scanner in = new Scanner(System.in);
+        System.out.println("Would you like to play Craps (Y/N)? ");
+        String response1 = in.nextLine();
+        if (response1.equalsIgnoreCase("y"))
+        {
+            System.out.println("Do you need instructions (Y/N)?");
+            System.out.println("LET'S PLAY CRAPS!");
+            System.out.println("Do you need instructions (Y/N)?");
+            String response2 = in.nextLine();
+            if (response2.equalsIgnoreCase("y"))
+            {
+                rules();
+            }
+            System.out.println();
+            System.out.println("Good Luck!");
+        }
+        else
+        {
+            System.out.println("Goodbye!");
+            done = true;
+        }
         while (!done)
         {
+            d1.roll();
+            d2.roll();
+            int firstRoll = d1.getNumber() + d2.getNumber();
+            System.out.println("Press <enter> to roll: ");
+            String enter = in.nextLine();
             System.out.println("First roll ...");
             System.out.println("Your rolled a " + (firstRoll) + "!");
             if (firstRoll == 7 || firstRoll == 11)
@@ -54,6 +71,8 @@ public class Craps
                 System.out.println(firstRoll + " is your point!");
                 while (!donePoint)
                 {
+                    System.out.println("Press <enter> to roll: ");
+                    enter = in.nextLine();
                     System.out.println("Rolling ...");
                     d1.roll();
                     d2.roll();
@@ -61,18 +80,21 @@ public class Craps
                     if (d1.getNumber() + d2.getNumber() == firstRoll)
                     {
                         System.out.println("You win!");
+                        donePoint = true;
                     }
                     else if (d1.getNumber() + d2.getNumber() == 7)
                     {
                         System.out.println("You lose!");
+                        donePoint = true;
                     }
                 }
             }
-            System.out.print("Press Q to quit, anything else to play again: ");
+            System.out.println("Press Q to quit, anything else to play again: ");
             String ans = in.nextLine();
+            donePoint = false;
             if (ans.equalsIgnoreCase("q"))
             {
-                System.out.print("Goodbye!");
+                System.out.println("Goodbye!");
                 done = true;
             }
         }
