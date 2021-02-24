@@ -100,3 +100,16 @@ public class Craps
         }
     }
 }
+
+
+/* 
+
+COMMENTS FROM THE INSTRUCTOR:
+
+Super-clean version of this game, and I love how you structured your
+code. Top notch!
+
+SCORE: 16/15
+
+*/
+
